@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tableau de bord Administrateur - Soumissions de Formulaire</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #4ca1af;
+      --accent-color: #e74c3c;
+      --text-color: #2c3e50;
+      --light-gray: #f8f9fa;
+      --border-radius: 10px;
+      --transition-speed: 0.3s;
+    }
+
+    /* Global Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f0f4f8;
+      margin-top: 70px; /* space for fixed navbar */
+      color: var(--text-color);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)) !important;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+    }
+    .navbar-brand {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+    .nav-link {
+      color: #fff !important;
+      font-weight: 500;
+      margin-right: 1rem;
+      transition: color var(--transition-speed);
+    }
+    .nav-link:hover {
+      color: var(--accent-color) !important;
+    }
+
+    /* Dashboard Container */
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Stats Cards */
+    .stats-card {
+      background: #fff;
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      text-align: center;
+      transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+      border: 1px solid #eaeaea;
+    }
+    .stats-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .stats-icon {
+      font-size: 2.5rem;
+      color: var(--secondary-color);
+      margin-bottom: 1rem;
+    }
+    .stats-card h5 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+    .stats-card h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--secondary-color);
+      margin: 0;
+    }
+
+    /* Cards (General) */
+    .card {
+      border: none;
+      border-radius: var(--border-radius);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 1.5rem;
+      transition: transform var(--transition-speed);
+    }
+    .card:hover {
+      transform: translateY(-3px);
+    }
+    .card-header {
+      background: #fff;
+      border-bottom: 1px solid #eaeaea;
+      padding: 1.5rem;
+      font-weight: 600;
+      font-size: 1.2rem;
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
+    .card-body {
+      padding: 1.5rem;
+    }
+
+    /* Table Styles */
+    .table {
+      margin-bottom: 0;
+    }
+    .table th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: var(--text-color);
+      padding: 1rem;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #dee2e6;
+    }
+    .table td {
+      padding: 1rem;
+      vertical-align: middle;
+      color: #555;
+      font-size: 0.95rem;
+      border-top: 1px solid #f1f1f1;
+    }
+    .table-hover tbody tr:hover {
+      background-color: #f5f7fa;
+    }
+
+    /* Buttons */
+    .btn-primary {
+      background-color: var(--secondary-color);
+      border: none;
+      padding: 0.5rem 1rem;
+      font-weight: 500;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed);
+    }
+    .btn-primary:hover {
+      background-color: #3b9aa0;
+    }
+
+    /* Search Box */
+    .search-box {
+      max-width: 300px;
+      margin-left: auto;
+    }
+    .search-box .form-control {
+      border-radius: 50px;
+      padding: 0.5rem 1.2rem;
+      border: 1px solid #ccc;
+      font-size: 0.9rem;
+      transition: box-shadow var(--transition-speed);
+    }
+    .search-box .form-control:focus {
+      box-shadow: 0 0 0 3px rgba(76, 161, 175, 0.2);
+      border-color: var(--secondary-color);
+    }
+
+    /* Pagination */
+    .pagination {
+      margin-bottom: 0;
+    }
+    .pagination .page-link {
+      padding: 0.5rem 1rem;
+      color: var(--text-color);
+      border: 1px solid #dee2e6;
+      border-radius: var(--border-radius);
+      transition: background-color var(--transition-speed);
+    }
+    .pagination .page-item.active .page-link {
+      background-color: var(--secondary-color);
+      border-color: var(--secondary-color);
+      color: #fff;
+    }
+
+    /* Modal */
+    .modal-content {
+      border-radius: var(--border-radius);
+      border: none;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    .modal-header {
+      background: #f8f9fa;
+      border-bottom: 1px solid #dee2e6;
+      padding: 1.5rem;
+      border-top-left-radius: var(--border-radius);
+      border-top-right-radius: var(--border-radius);
+    }
+    .modal-body {
+      padding: 1.5rem;
+    }
+    .modal-footer {
+      border-top: 1px solid #dee2e6;
+      padding: 1.5rem;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .dashboard-container {
+        padding: 1rem;
+      }
+      .search-box {
+        max-width: 100%;
+        margin: 1rem 0;
+      }
+      .stats-card h2 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Tableau de bord Administrateur</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Soumissions</a>
+          </li>
+        </ul>
+        <a href="/" class="btn btn-outline-light">Retour au site principal</a>
+        <button id="logout-button" class="btn btn-outline-light">Déconnexion</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="dashboard-container">
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+      <div class="col-md-4 mb-3 mb-md-0">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <h5>Voir le résumé du graphique</h5>
+          <button class="btn btn-primary" onclick="window.location.href='chart-summary.html'">Accéder au graphique</button>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h5>Nouveaux Messages</h5>
+          <h2 id="newMessages">0</h2>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-calendar-day"></i>
+          </div>
+          <h5>Soumissions d'Aujourd'hui</h5>
+          <h2 id="todaySubmissions">0</h2>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submissions Table -->
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h5 class="mb-0">Soumissions Récentes</h5>
+        <div class="search-box">
+          <input type="text" class="form-control" placeholder="Rechercher des soumissions..." id="searchInput" />
+        </div>
+        <button id="exportBtn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#dateModal">Export Submissions</button>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Nom</th>
+                <th>Organisation</th>
+                <th>Email</th>
+                <th>Sujet</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="submissionsTableBody">
+              <!-- Table content will be dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="card-footer d-flex justify-content-between align-items-center">
+        <div>
+          Affichage de <span id="currentCount">0</span> sur <span id="totalCount">0</span> soumissions
+        </div>
+        <nav aria-label="Navigation de page">
+          <ul class="pagination" id="pagination">
+            <!-- Pagination will be dynamically populated -->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+<!-- Enhanced Modal for Date Selection using Bootstrap 5 -->
+<div class="modal fade" id="dateModal" tabindex="-1" aria-labelledby="dateModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-sm">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="dateModalLabel">Select Date Range</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="dateForm">
+          <div class="mb-3">
+            <label for="startDate" class="form-label">Start Date</label>
+            <input type="date" id="startDate" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="endDate" class="form-label">End Date</label>
+            <input type="date" id="endDate" class="form-control" required>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="bi bi-x-circle"></i> Close
+        </button>
+        <button type="button" id="confirmExportBtn" class="btn btn-success">
+          <i class="bi bi-file-earmark-arrow-down"></i> Export
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript for Date Validation and Modal Behavior -->
+<script>
+document.getElementById('confirmExportBtn').addEventListener('click', async function () {
+  const startDateInput = document.getElementById('startDate');
+  const endDateInput = document.getElementById('endDate');
+  const startDate = new Date(startDateInput.value);
+  const endDate = new Date(endDateInput.value);
+
+  // Validate that the start date is not after the end date
+  if (startDate > endDate) {
+    alert('Start date cannot be after end date.');
+    return;
+  }
+
+  try {
+      const response = await fetch('/api/export-submissions', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ startDate: startDateInput.value, endDate: endDateInput.value })
+      });
+
+      if (response.ok) {
+          const blob = await response.blob();
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.style.display = 'none';
+          a.href = url;
+          a.download = 'submissions.xlsx';
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
+          alert('Export successful!'); // Inform the user
+      } else {
+          const errorData = await response.json();
+          alert('Error: ' + errorData.error);
+      }
+  } catch (error) {
+      console.error('Error exporting submissions:', error);
+      alert('An error occurred while exporting submissions.');
+  }
+
+  // Hide the modal after export
+  const dateModalEl = document.getElementById('dateModal');
+  const modal = bootstrap.Modal.getInstance(dateModalEl);
+  if (modal) {
+      modal.hide();
+  }
+});
+</script>
+  <!-- View Message Modal -->
+  <div class="modal fade" id="viewMessageModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Détails du Message</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <strong>De:</strong> <span id="modalName"></span>
+          </div>
+          <div class="mb-3">
+            <strong>Organisation:</strong> <span id="modalOrganization"></span>
+          </div>
+          <div class="mb-3">
+            <strong>Email:</strong> <span id="modalEmail"></span>
+          </div>
+          <div class="mb-3">
+            <strong>Téléphone:</strong> <span id="modalPhone"></span>
+          </div>
+          <div class="mb-3">
+            <strong>Sujet:</strong> <span id="modalSubject"></span>
+          </div>
+          <div class="mb-3">
+            <strong>Message:</strong>
+            <p id="modalMessage"></p>
+          </div>
+          <div class="mb-3">
+            <strong>Reçu:</strong> <span id="modalDate"></span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    let currentPage = 1;
+    const itemsPerPage = 10;
+    let allSubmissions = [];
+
+    // Fetch submissions from the server; if not available, use sample data
+    async function fetchSubmissions() {
+      try {
+        const response = await fetch('/api/submissions');
+        const data = await response.json();
+        allSubmissions = data;
+      } catch (error) {
+        console.error('Error fetching submissions, using sample data:', error);
+        allSubmissions = [];
+      }
+      updateDashboardStats(allSubmissions);
+      displaySubmissions(allSubmissions);
+    }
+
+    function updateDashboardStats(submissions) {
+      // Remove or comment out the following lines
+      // document.getElementById('totalSubmissions').textContent = submissions.length;
+      // const newMessages = submissions.filter(s => !s.read).length;
+      // document.getElementById('newMessages').textContent = newMessages;
+    }
+
+    // Display submissions in the table
+    function displaySubmissions(submissions) {
+      const tbody = document.getElementById('submissionsTableBody');
+      tbody.innerHTML = '';
+
+      const start = (currentPage - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const paginatedSubmissions = submissions.slice(start, end);
+
+      paginatedSubmissions.forEach(submission => {
+        const row = document.createElement('tr');
+        const date = new Date(submission.created_at).toLocaleDateString();
+        row.innerHTML = `
+          <td>${date}</td>
+          <td>${submission.username}</td>
+          <td>${submission.organization}</td>
+          <td>${submission.email}</td>
+          <td>${submission.subject}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" onclick="viewMessage('${submission._id}')">
+              <i class="fas fa-eye"></i> Voir
+            </button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+
+      updatePagination(submissions.length);
+      updateCounters(start + 1, Math.min(end, submissions.length), submissions.length);
+    }
+
+    // Update pagination controls
+    function updatePagination(totalItems) {
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      const pagination = document.getElementById('pagination');
+      pagination.innerHTML = '';
+
+      // Previous button
+      const prevLi = document.createElement('li');
+      prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+      prevLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage - 1})">Précédent</a>`;
+      pagination.appendChild(prevLi);
+
+      // Page numbers
+      for (let i = 1; i <= totalPages; i++) {
+        const li = document.createElement('li');
+        li.className = `page-item ${currentPage === i ? 'active' : ''}`;
+        li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+        pagination.appendChild(li);
+      }
+
+      // Next button
+      const nextLi = document.createElement('li');
+      nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+      nextLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${currentPage + 1})">Suivant</a>`;
+      pagination.appendChild(nextLi);
+    }
+
+    // Change page
+    function changePage(page) {
+      if (page < 1 || page > Math.ceil(allSubmissions.length / itemsPerPage)) return;
+      currentPage = page;
+      displaySubmissions(allSubmissions);
+    }
+
+    // Update counters
+    function updateCounters(start, end, total) {
+      document.getElementById('currentCount').textContent = `${start}-${end}`;
+      document.getElementById('totalCount').textContent = total;
+    }
+
+    // View message details
+    function viewMessage(id) {
+      const submission = allSubmissions.find(s => s._id === id);
+      if (!submission) return;
+      document.getElementById('modalName').textContent = submission.username;
+      document.getElementById('modalOrganization').textContent = submission.organization;
+      document.getElementById('modalEmail').textContent = submission.email;
+      document.getElementById('modalPhone').textContent = submission.phone;
+      document.getElementById('modalSubject').textContent = submission.subject;
+      document.getElementById('modalMessage').textContent = submission.message;
+      document.getElementById('modalDate').textContent = new Date(submission.created_at).toLocaleString();
+      const modal = new bootstrap.Modal(document.getElementById('viewMessageModal'));
+      modal.show();
+    }
+
+    // Search functionality
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const searchTerm = e.target.value.toLowerCase();
+      const filteredSubmissions = allSubmissions.filter(submission => 
+        submission.username.toLowerCase().includes(searchTerm) ||
+        submission.organization.toLowerCase().includes(searchTerm) ||
+        submission.email.toLowerCase().includes(searchTerm) ||
+        submission.subject.toLowerCase().includes(searchTerm)
+      );
+      currentPage = 1;
+      displaySubmissions(filteredSubmissions);
+    });
+
+    // Logout functionality
+    document.getElementById('logout-button').addEventListener('click', async () => {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+      });
+
+      if (response.redirected) {
+        window.location.href = response.url; // Redirect to login page
+      }
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', function() {
+      $('#dateModal').modal('show'); // Show the modal
+    });
+
+    document.getElementById('confirmExportBtn').addEventListener('click', async function() {
+      const startDate = document.getElementById('startDate').value;
+      const endDate = document.getElementById('endDate').value;
+
+      if (startDate && endDate) {
+        try {
+          const response = await fetch('/api/export-submissions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ startDate, endDate })
+          });
+
+          if (response.ok) {
+            const blob = await response.blob();
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.download = 'submissions.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            alert('Export successful!');
+            $('#dateModal').modal('hide'); // Hide the modal after export
+          } else {
+            const errorData = await response.json();
+            alert('Error: ' + errorData.error);
+          }
+        } catch (error) {
+          console.error('Error exporting submissions:', error);
+          alert('An error occurred while exporting submissions.');
+        }
+      } else {
+        alert('Please select both start and end dates.');
+      }
+    });
+
+    // Initial load
+    fetchSubmissions();
+  </script>
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    fetchSubmissions();
+  });
+</script>
+</body>
+</html>

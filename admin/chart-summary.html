@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tableau de Bord des Soumissions</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --primary: #6366f1;
+      --secondary: #4f46e5;
+      --background: #0f172a;
+      --text: #f8fafc;
+      --success: #22c55e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    h2, h3 {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      /* Increase sidebar width slightly to accommodate 7 columns of days */
+      grid-template-columns: 320px 1fr;
+      gap: 2rem;
+    }
+
+    .sidebar {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .calendar-grid {
+      display: grid;
+      /* 7 columns, each 1 fraction of the available space */
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+    }
+
+    .calendar-day {
+      padding: 0.5rem;
+      text-align: center;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .calendar-day:hover {
+      background: rgba(99, 102, 241, 0.3);
+    }
+
+    .selected {
+      background: var(--primary) !important;
+      color: white;
+    }
+
+    .stats-panel {
+      margin-top: 2rem;
+    }
+
+    .chart-container {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1rem;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      height: 400px;
+    }
+
+    .toolbar {
+      margin-bottom: 1.5rem;
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    #confirm-dates {
+      background: var(--success);
+      display: none;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    /* Dashboard navigation button */
+    .btn-dashboard {
+      display: block;
+      margin-top: 1.5rem;
+      background: var(--secondary);
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        order: 2;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Sidebar with Calendar -->
+    <div class="sidebar">
+      <h2>📅 Calendrier</h2>
+      <div class="calendar-header">
+        <button id="prev-month">←</button>
+        <h3 id="current-month"></h3>
+        <button id="next-month">→</button>
+      </div>
+      <div class="calendar-grid" id="calendar"></div>
+
+      <div class="stats-panel">
+        <h3>📊 Statistiques</h3>
+        <p>
+          Période sélectionnée : <br />
+          <strong id="selected-range">Aucune</strong>
+        </p>
+        <button id="confirm-dates">Confirmer la sélection</button>
+        <button id="reset-dates" style="width: 100%; margin-top: 1rem;">
+          Réinitialiser
+        </button>
+      </div>
+
+      <!-- Dashboard Navigation Button -->
+      <a href="http://localhost:3000/admin/#" class="btn-dashboard">Retour au Dashboard</a>
+    </div>
+
+    <!-- Chart Section -->
+    <div class="chart-container">
+      <div class="toolbar">
+        <h2>📈 Analyse des Soumissions</h2>
+      </div>
+      <canvas id="main-chart"></canvas>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      let chartInstance = null;
+      let submissions = [];
+      let currentRange = { start: null, end: null };
+
+      // Charger les données
+      try {
+        const response = await fetch("/api/submissions");
+        submissions = await response.json();
+        submissions.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+        console.log("Données chargées:", submissions);
+      } catch (error) {
+        console.error("Erreur:", error);
+        alert("Échec du chargement des données");
+      }
+
+      // Gestion du calendrier
+      class CalendarManager {
+        constructor() {
+          this.currentDate = new Date();
+          this.initialize();
+        }
+
+        initialize() {
+          this.renderCalendar();
+          this.setupEventListeners();
+        }
+
+        renderCalendar() {
+          const monthYear = this.currentDate
+            .toLocaleDateString("fr-FR", { month: "long", year: "numeric" })
+            .replace(/^\w/, (c) => c.toUpperCase());
+          document.getElementById("current-month").textContent = monthYear;
+
+          const calendarGrid = document.getElementById("calendar");
+          calendarGrid.innerHTML = "";
+
+          const lastDay = new Date(
+            this.currentDate.getFullYear(),
+            this.currentDate.getMonth() + 1,
+            0
+          ).getDate();
+
+          for (let day = 1; day <= lastDay; day++) {
+            const dayElement = document.createElement("div");
+            dayElement.className = "calendar-day";
+            dayElement.textContent = day;
+
+            const date = new Date(
+              this.currentDate.getFullYear(),
+              this.currentDate.getMonth(),
+              day
+            );
+
+            if (
+              currentRange.start &&
+              currentRange.end &&
+              date >= currentRange.start &&
+              date <= currentRange.end
+            ) {
+              dayElement.classList.add("selected");
+            }
+
+            dayElement.addEventListener("click", () => {
+              this.handleDateClick(date);
+            });
+
+            calendarGrid.appendChild(dayElement);
+          }
+        }
+
+        handleDateClick(date) {
+          if (!currentRange.start || currentRange.end) {
+            currentRange = { start: date, end: null };
+            document.getElementById("selected-range").innerHTML = `
+              ${date.toLocaleDateString("fr-FR")}<br>→ Sélectionnez la fin
+            `;
+            document.getElementById("confirm-dates").style.display = "none";
+          } else {
+            currentRange.end = date;
+            if (currentRange.start > currentRange.end) {
+              [currentRange.start, currentRange.end] = [currentRange.end, currentRange.start];
+            }
+            document.getElementById("selected-range").textContent = `
+              ${currentRange.start.toLocaleDateString("fr-FR")} - ${currentRange.end.toLocaleDateString("fr-FR")}
+            `;
+            document.getElementById("confirm-dates").style.display = "block";
+          }
+          this.renderCalendar();
+        }
+
+        setupEventListeners() {
+          document.getElementById("prev-month").addEventListener("click", () => {
+            this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+            this.renderCalendar();
+          });
+          document.getElementById("next-month").addEventListener("click", () => {
+            this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+            this.renderCalendar();
+          });
+        }
+      }
+
+      // Initialiser le calendrier
+      const calendar = new CalendarManager();
+
+      // Mise à jour du graphique
+      function updateChart() {
+        if (!currentRange.start || !currentRange.end) {
+          console.warn("Aucune période sélectionnée");
+          return;
+        }
+
+        const startDate = new Date(currentRange.start).setHours(0, 0, 0, 0);
+        const endDate = new Date(currentRange.end).setHours(23, 59, 59, 999);
+
+        const filteredData = submissions.filter((sub) => {
+          const subDate = new Date(sub.created_at).setHours(0, 0, 0, 0);
+          return subDate >= startDate && subDate <= endDate;
+        });
+
+        if (filteredData.length === 0) {
+          alert("Aucune donnée disponible pour cette période");
+          return;
+        }
+
+        const dailyCounts = filteredData.reduce((acc, sub) => {
+          const dateStr = new Date(sub.created_at).toLocaleDateString("fr-FR");
+          acc[dateStr] = (acc[dateStr] || 0) + 1;
+          return acc;
+        }, {});
+
+        const labels = Object.keys(dailyCounts).sort((a, b) => new Date(a) - new Date(b));
+        const dataPoints = labels.map((label) => dailyCounts[label]);
+
+        const ctx = document.getElementById("main-chart").getContext("2d");
+        if (chartInstance) chartInstance.destroy();
+
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, "rgba(99, 102, 241, 0.2)");
+        gradient.addColorStop(1, "rgba(99, 102, 241, 0)");
+
+        chartInstance = new Chart(ctx, {
+          type: "line",
+          data: {
+            labels,
+            datasets: [
+              {
+                label: "Soumissions",
+                data: dataPoints,
+                borderColor: "rgba(99, 102, 241, 1)",
+                borderWidth: 2,
+                tension: 0.4,
+                fill: true,
+                backgroundColor: gradient,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                backgroundColor: "rgba(15, 23, 42, 0.9)",
+                bodyColor: "#fff",
+                callbacks: {
+                  title: () => "",
+                  label: (ctx) => `${ctx.parsed.y} soumissions le ${ctx.label}`,
+                },
+              },
+            },
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { color: "#94a3b8" },
+              },
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  color: "#94a3b8",
+                  stepSize: 1,
+                },
+                grid: { color: "rgba(255, 255, 255, 0.1)" },
+              },
+            },
+          },
+        });
+      }
+
+      // Boutons
+      document.getElementById("confirm-dates").addEventListener("click", updateChart);
+      document.getElementById("reset-dates").addEventListener("click", () => {
+        currentRange = { start: null, end: null };
+        document.getElementById("selected-range").textContent = "Aucune";
+        document.getElementById("confirm-dates").style.display = "none";
+        if (chartInstance) chartInstance.destroy();
+        calendar.renderCalendar();
+      });
+    });
+  </script>
+</body>
+</html>

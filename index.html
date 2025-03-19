@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>BnB Call Center</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="" name="keywords" />
+    <meta content="" name="description" />
+
+    <!-- Favicon -->
+    <link href="img/Callcenter.png" rel="shortcut icon" />
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet" />
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/glow-effect.css" rel="stylesheet" />
+    <script
+      type="text/javascript"
+      src="https://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=kKBokJqedKoCosY-GG7q_FwV2F7HfdfAJW_9HxdreiU1XBMotlizfnlLh-Uu-4Jdmp4rM0EkF4pPqkVlIZVAIChKAeSio01gvLUom2703kuDuHs5-_ftxKGtf2hV3o9irB5nQlpNpPJkd2kgj27s7hmBxo3tOKL6PIprv2T5lHC74xtivb8uTmUNyEqfGyAT1ddAwdm99Q2oyMWH6VFupWAVwpNFZ2g945Qm8Krs3Jmi4GtHEifE7gpCfSTciDo4sgGkDT5Mmo2KZdipGMsXgQ"
+      charset="UTF-8"
+    ></script>
+  </head>
+
+  <body>
+    <!-- Updated text colors to #FFCA1A -->
+    <style>
+      .golden-heading, h3[style*="color"], h5[style*="color"], h6[style*="color"], p[style*="color"] {
+        color: #FFCA1A !important;
+      }
+    </style>
+
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+      <div class="spinner-grow text-primary" style="width: 3rem; height: 3rem" role="status">
+        <span class="sr-only">Loading...</span>
+      </div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top p-0" style="top: -100px;">
+      <a href="#" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <img src="img/Callcenter.png" alt="Logo 1" style="height: 40px; margin-right: 10px">
+        <img src="img/Callcenter1Truvb.png" alt="Logo 2" style="height: 40px">
+      </a>
+      <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+          <a href="#" class="nav-item nav-link nav-section active" data-section="home">Accueil</a>
+          <a href="#about" class="nav-item nav-link nav-section" data-section="about">À propos</a>
+          <a href="#fact" class="nav-item nav-link nav-section" data-section="fact">Pourquoi nous ?</a>
+          <a href="#services" class="nav-item nav-link nav-section" data-section="services">Nos Services</a>
+          <a href="#contact" class="nav-item nav-link nav-section" data-section="contact">Contactez-nous</a>
+        </div>
+        <h4 class="m-0 pe-lg-5 d-none d-lg-block golden-phone">
+          <i class="fa fa-headphones text-primary me-3"></i>+216 27 094 094
+        </h4>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Carousel Start -->
+    <div id="home" class="container-fluid p-0 pb-1">
+      <div class="owl-carousel header-carousel position-relative mb-3">
+        <div class="owl-carousel-item position-relative">
+          <img class="img-fluid" src="img/bg2.jpg" alt="" />
+          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, 0.5)">
+            <div class="container">
+              <div class="row justify-content-start">
+                <div class="col-10 col-lg-8">
+                  <h5 class="text-white text-uppercase mb-3 animated slideInDown">Votre centre d'appels pour une relation client optimisée</h5>
+                  <h1 class="display-5 text-white animated slideInDown mb-4">
+                    Une approche sur-mesure pour transformer la satisfaction de vos clients en un véritable atout stratégique.
+                  </h1>
+                  <a href="#contact" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Nous Contacter</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+          <img class="img-fluid" src="img/1.jpg" alt="" />
+          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, 0.5)">
+            <div class="container">
+              <div class="row justify-content-start">
+                <div class="col-10 col-lg-8">
+                  <h5 class="text-white text-uppercase mb-3 animated slideInDown">Excellence en service client</h5>
+                  <h1 class="display-5 text-white animated slideInDown mb-4">
+                    Offrez à vos clients une assistance réactive et personnalisée grâce à nos solutions adaptées à vos besoins
+                  </h1>
+                  <a href="#services" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Découvrez nos services</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="owl-carousel-item position-relative">
+          <img class="img-fluid" src="img/bg3.jpg" alt="" />
+          <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(6, 3, 21, 0.5)">
+            <div class="container">
+              <div class="row justify-content-start">
+                <div class="col-10 col-lg-8">
+                  <h1 class="display-5 text-white animated slideInDown mb-4">Boostez votre relation client avec une équipe dédiée à votre succès</h1>
+                  <a href="#contact" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Demandez un devis gratuit</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Carousel End -->
+
+    <!-- Remaining HTML structure continues without changes... -->
+
+    <!-- About Start -->
+    <div id="about" class="container-fluid overflow-hidden py-5 px-lg-0">
+      <div class="container about py-5 px-lg-0">
+        <div class="row g-5 mx-lg-0">
+          <div
+            class="col-lg-6 video-container wow zoomIn" data-wow-delay="0.3s"
+          >
+            <video autoplay loop muted playsinline>
+              <source src="img/video.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+          <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
+            <h6 class="text-secondary text-uppercase mb-3">Qui sommes nous?</h6>
+            <h3 class="golden-heading" style="color: #FFCA1A;">BnB Call Center</h3>
+            <p>
+              Chez BnB Call Center, notre
+              <strong>centre d'appel téléphonique</strong>, nous cultivons une
+              énergie collective qui se reflète dans chaque interaction. Notre
+              équipe, passionnée par la <strong>relation client</strong>,
+              s'engage à offrir un service de <strong>qualité</strong>,
+              garantissant ainsi la
+              <strong>satisfaction de vos clients</strong>. Grâce à un
+              environnement de travail collaboratif et à une confiance mutuelle,
+              nous assurons une
+              <strong>permanence téléphonique de 7h à 21h</strong>, sans
+              <strong>aucun appel perdu</strong>.
+            </p>
+            <h3 class="golden-heading" style="color: #FFCA1A;">
+              BnB, filiale du groupe TRUVISION, accompagne ceux qui
+              nous&nbsp;font&nbsp;confiance
+            </h3>
+            <p>
+              TRUVISION CO. est spécialisée dans la fourniture d'équipements
+              bancaires de haute technologie. Son expertise lui a permis de
+              gagner la confiance de grandes institutions financières comme
+              CITIBANK Afrique et ECOBANK, ainsi que d’organismes
+              gouvernementaux.
+            </p>
+            <a href="https://truvisionco.com/" class="btn btn-primary py-3 px-5"
+              >Voir les détails</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- About End -->
+
+    <!-- Team Start -->
+    <div class="container-xxl pb-2 pt-1">
+      <div class="container pt-3">
+        <div class=" wow fadeInUp" data-wow-delay="0.1s">
+          <div class="text-center">
+          <h1 class="mb-5 golden-heading" style="color: #FFCA1A;">L'engagement de nos fondateurs</h1>
+        </div>
+          <p class="mx-auto">
+            L'équipe administrative de BnB Call Center est le pilier de notre
+            <strong>centre d'appels</strong>. Sous la direction de
+            <strong>Dhouha Arfaoui</strong>, notre Directrice des Ressources
+            Humaines, nous incarnons l'esprit d'équipe et veillons au bien-être
+            au travail. Avec une <strong>expertise</strong> solide en gestion
+            des talents et en développement organisationnel, Dhouha s'assure que
+            chaque collaborateur trouve sa place et s'épanouisse au sein de
+            l'entreprise.<br /><br />
+          </p>
+          <div class="container-fluid overflow-hidden px-lg-0">
+            <div class="container about px-lg-0">
+              <div class="row g-5 mx-lg-0">
+                <div class="col-lg-6 ps-lg-0 wow fadeInLeft" data-wow-delay="0.1s" style="min-height: 400px">
+                  <div class="team-image">
+                    <img src="img/equipe.jpg" alt="Notre équipe">
+                  </div>
+                </div>
+                <div class="col-lg-6 about-text wow fadeInUp" data-wow-delay="0.3s">
+                  <p>
+                    Notre Directrice Qualité, <strong>Samar Aloui</strong>, est
+                    la garante de l'excellence opérationnelle. Passionnée par
+                    l'amélioration continue, elle met en place des processus
+                    rigoureux pour garantir la
+                    <strong>satisfaction de vos clients</strong> et la
+                    performance de nos équipes.<br /><br />
+
+                    À la tête de l'entreprise, notre CEO,
+                    <strong>Abderrahman Badreddine</strong>, visionnaire et
+                    stratège, guide le <strong>centre d'appels</strong> vers
+                    l'innovation et la croissance. Avec une expérience riche en
+                    management et un leadership inspirant, il incarne les
+                    valeurs de notre organisation : excellence, intégrité et
+                    engagement client.<br /><br />
+                    Enfin, <strong>Yousra Karchoud</strong>, Responsable
+                    Production, est le moteur opérationnel de notre
+                    <strong>centre d'appels</strong>. Dotée d'un sens aigu de
+                    l'organisation et d'une grande rigueur, elle supervise les
+                    équipes de production pour assurer un service fluide et
+                    efficace.<br /><br />
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>
+            Grâce à cette équipe dévouée et compétente, nous assurons une
+            <strong>relation client</strong> optimale, renforçant ainsi la
+            <strong>satisfaction de vos clients</strong>. Comme on supervise le
+            <strong>traitement des appels</strong> et veille à ce que chaque
+            interaction reflète nos standards élevés. Grâce à une gestion
+            rigoureuse et à une attention constante à la
+            <strong>qualité</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Team End -->
+
+    <!--WorkSpcae Start -->
+    <div class="container-xxl pt-5 wow fadeInUp" data-wow-delay="0.1s">
+      <div class="container py-5">
+        <div class="text-center">
+          <h6 class="text-secondary text-uppercase" style="color: #FFCA1A;">Notre Espace de Travail</h6>
+          <p class="mx-auto text-center">
+            Situé au cœur d'un emplacement stratégique, BnB Call Center dispose
+            d'un espace moderne et fonctionnel conçu pour favoriser la
+            performance. Notre <strong> centre d’appels</strong> est équipé des
+            dernières technologies, notamment <strong>Aircall</strong>, pour
+            garantir une <strong>qualité</strong> optimale dans le
+            <strong>traitement des appels</strong>. <br /><br />Les images
+            ci-dessous illustrent notre infrastructure dédiée à la relation
+            client, reflétant notre engagement envers un environnement de
+            travail propice à l'excellence. De plus, notre politique de
+            <strong>centre d'appels recrutement</strong> nous permet d'attirer
+            les meilleurs talents pour servir vos clients.
+          </p>
+        </div>
+        <div
+          class="owl-carousel testimonial-carousel wow fadeInUp"
+          data-wow-delay="0.1s"
+        >
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/c1.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 1"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/c2.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 2"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/c4.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 3"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/c3.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 4"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/c5.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 5"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/c6.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 6"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/c7.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 7"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/c8.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 8"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/perseverance.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 9"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/1.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 10"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/3.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 11"
+              />
+            </div>
+          </div>
+
+          <div class="testimonial-item p-4 my-5">
+            <div class="d-flex align-items-end mb-4">
+              <img
+                class="img-fluid flex-shrink-0"
+                src="img/2.jpg"
+                style="width: 100%; height: 300px; object-fit: cover"
+                alt="Workspace Image 12"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--WorkSpcae End -->
+    <!-- Fact Start -->
+    <div id="fact" class="container-xxl py-3">
+      <div class="container py-5">
+        <div class="row g-5">
+          <div class="col-12 wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="text-secondary text-uppercase mb-3" style="color: #FFCA1A;">
+              Nos chiffres clés
+            </h6>
+            <div class="row">
+              <div class="col-sm-6 col-lg-3">
+                <div class="stats-card p-4 mb-4 wow fadeIn shadow rounded-lg" data-wow-delay="0.5s">
+                  <div class="content p-4">
+                    <i class="fa fa-smile fa-2x text-primary mb-3"></i>
+                    <h2 class="text-black mb-2" data-toggle="counter-up">2</h2>
+                    <p class="text-black mb-0">Clients satisfaits</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="stats-card p-4 mb-4 wow fadeIn shadow rounded-lg" data-wow-delay="0.7s">
+                  <div class="content p-4">
+                    <i class="fa fa-star fa-2x text-primary mb-3"></i>
+                    <h2 class="text-black mb-2" data-toggle="counter-up">7</h2>
+                    <p class="text-black mb-0">Projets achevés</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="stats-card p-4 mb-4 wow fadeIn shadow rounded-lg" data-wow-delay="0.9s">
+                  <div class="content p-4">
+                    <i class="fa fa-trophy fa-2x text-primary mb-3"></i>
+                    <h2 class="text-black mb-2" data-toggle="counter-up">1180</h2>
+                    <p class="text-black mb-0">Total des tâches achevées</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-lg-3">
+                <div class="stats-card p-4 mb-4 wow fadeIn shadow rounded-lg" data-wow-delay="0.3s">
+                  <div class="content p-4">
+                    <i class="fa fa-users fa-2x text-primary mb-3"></i>
+                    <h2 class="text-black mb-2" data-toggle="counter-up">15</h2>
+                    <p class="text-black mb-0">Nombre total d'employés</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid overflow-hidden py-5 px-lg-0">
+      <div class="container feature py-3 px-lg-0">
+        <div class="row g-5 mx-lg-0">
+          <div class="col-lg-6 feature-text wow fadeInUp" data-wow-delay="0.1s">
+            <div class="d-flex mb-5 wow fadeInUp" data-wow-delay="0.3s">
+              <i class="fa fa-globe text-primary fa-3x flex-shrink-0"></i>
+              <div class="ms-4">
+                <h5 style="color: #FFCA1A;">Support client multilingue</h5>
+                <p class="mb-0">
+                  Nous offrons un support client dans plusieurs langues pour
+                  répondre aux besoins de vos clients internationaux.
+                </p>
+              </div>
+            </div>
+            <div class="d-flex mb-5 wow fadeIn" data-wow-delay="0.5s">
+              <i class="fa fa-headphones text-primary fa-3x flex-shrink-0"></i>
+              <div class="ms-4">
+                <h5 style="color: #FFCA1A;">Service 24/7</h5>
+                <p class="mb-0">
+                  Un centre d'appel 24 heures sur 24, 7 jours sur 7, assure une
+                  assistance continue 24 heures sur 24, en traitant les demandes
+                  et les problèmes des clients à tout moment, garantissant ainsi
+                  une assistance cohérente et fiable tous les jours de la
+                  semaine.
+                </p>
+              </div>
+            </div>
+            <div class="d-flex mb-5 wow fadeInUp" data-wow-delay="0.7s">
+              <i
+                class="fa fa-lightbulb text-primary fa-3x flex-shrink-0 me-3"
+              ></i>
+              <div class="ms-4">
+                <h5 style="color: #FFCA1A;">Expertise</h5>
+                <p class="mb-0">
+                  Une expertise éprouvée au service de votre satisfaction.
+                </p>
+              </div>
+            </div>
+            <div class="d-flex mb-0 wow fadeInUp" data-wow-delay="0.9s">
+              <i class="fa fa-briefcase text-primary fa-3x flex-shrink-0"></i>
+              <div class="ms-4">
+                <h5 style="color: #FFCA1A;">Expérience</h5>
+                <p class="mb-0">
+                  Un savoir-faire au cœur de chaque interaction client.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="col-lg-6 pe-lg-0 wow fadeInRight"
+            data-wow-delay="0.1s"
+            style="min-height: 400px"
+          >
+            <div class="position-relative h-100">
+              <img
+                class="position-absolute img-fluid w-100 h-100"
+                src="img/service-bg.jpg"
+                style="object-fit: cover"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid pt-5 pb-1">
+      <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+        <h3 class="mb-5" style="color: #FFCA1A;">Notre éthique de travail</h3>
+        <p class="mx-auto text-center" style="max-width: 950px">
+          repose sur des principes fondamentaux tels que la rigueur, le respect
+          et l'engagement envers nos clients et nos collègues. Nous croyons en
+          la transparence dans nos interactions, en assurant une communication
+          claire et honnête à chaque étape. La ponctualité, la courtoisie et la
+          gestion efficace des appels sont au cœur de notre approche. Nous nous
+          engageons à résoudre les demandes de manière rapide et professionnelle
+          tout en maintenant un service de haute qualité. Chaque appel est une
+          opportunité d’offrir une expérience positive et de renforcer la
+          confiance que nos clients placent en nous.
+        </p>
+      </div>
+    </div>
+    <!-- Fact End -->
+
+    <!-- Service Start -->
+    <div id="services" class="container-xxl pt-5">
+      <div class="container py-5">
+        <div class="text-center wow fadeInUp pb-4" data-wow-delay="0.1s">
+          <h6 class="text-secondary text-uppercase" style="color: #FFCA1A;">Découvrir nos services</h6>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="service-item p-4 h-100">
+              <div class="content">
+                <div class="overflow-hidden mb-4">
+                  <h4>
+                    <i class="fa fa-phone text-primary me-2"></i>Gestion des
+                    appels entrants
+                  </h4>
+                </div>
+                <p>
+                  Nous assurons une prise en charge professionnelle des appels
+                  entrants de vos clients, garantissant des réponses rapides et
+                  efficaces.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="service-item p-4 h-100">
+              <div class="content">
+                <div class="overflow-hidden mb-4">
+                  <h4>
+                    <i class="fa fa-calendar-check text-primary me-2"></i>Prise de
+                    rendez-vous
+                  </h4>
+                </div>
+                <p>
+                  Optimisez votre temps grâce à notre service de prise de
+                  rendez-vous, en simplifiant la gestion de votre agenda.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+            <div class="service-item p-4 h-100">
+              <div class="content">
+                <div class="overflow-hidden mb-4">
+                  <h4>
+                    <i class="fa fa-globe text-primary me-2"></i>Support client
+                    multilingue
+                  </h4>
+                </div>
+                <p>
+                  Nous offrons un support client dans plusieurs langues pour
+                  répondre aux besoins de vos clients internationaux.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="service-item p-4 h-100">
+              <div class="content">
+                <div class="overflow-hidden mb-4">
+                  <h4>
+                    <i class="fa fa-phone text-primary me-2"></i>Téléprospection
+                    et vente par téléphone
+                  </h4>
+                </div>
+                <p>
+                  Développez vos ventes grâce à notre service de téléprospection,
+                  adapté à vos objectifs commerciaux.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="service-item p-4 h-100">
+              <div class="content">
+                <div class="overflow-hidden mb-4">
+                  <h4>
+                    <i class="fa fa-thumbs-up text-primary me-2"></i>Fortement
+                    recommandé
+                  </h4>
+                </div>
+                <p>
+                  Notre centre d'appels est fortement recommandé pour son service
+                  exceptionnel, son support fiable et la grande satisfaction de
+                  ses clients.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4 wow fadeInUp" data-wow-delay="0.7s">
+            <div class="service-item p-4 h-100">
+              <div class="content">
+                <div class="overflow-hidden mb-4">
+                  <h4>
+                    <i class="fa fa-chart-bar text-primary me-2"></i>Enquêtes et
+                    sondages
+                  </h4>
+                </div>
+                <p>
+                  Obtenez des retours précieux de vos clients en temps réel avec
+                  notre service d’enquêtes et de sondages téléphoniques.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Service End -->
+
+    <!-- contact Start -->
+    <div id="contact" class="container-xxl py-5">
+      <div class="container py-5">
+        <div class="row g-5 contact-section">
+          <div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="contact-info">
+              <h6 class="text-secondary text-uppercase mb-3">
+                Une question ? N'hésitez pas à nous contacter !
+              </h6>
+              <h2 class="mb-5">
+                Veuillez remplir ce formulaire, et nous reviendrons vers vous
+                rapidement.
+              </h2>
+              <div class="d-flex align-items-center">
+                <i
+                  class="fa fa-headphones fa-2x flex-shrink-0 bg-primary p-3 text-white"
+                ></i>
+                <div class="ps-4">
+                  <h6>Appelez pour toute demande !</h6>
+                  <h3 class="text-primary m-0">+216 27 094 094</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-7">
+            <div class="wow fadeIn" data-wow-delay="0.5s">
+              <form onsubmit="sendMail(event)" class="contact-form">
+                <div class="row g-3">
+                  <div class="col-12 col-sm-6">
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        name="username"
+                        id="username"
+                        class="form-control border-0"
+                        placeholder="Saisissez votre nom"
+                        style="height: 55px"
+                      />
+                      <label for="username">Nom complet</label>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        name="organization"
+                        id="organization"
+                        class="form-control border-0"
+                        placeholder="Nom de l'organisation"
+                        style="height: 55px"
+                      />
+                      <label for="organization">Nom de l'organisation</label>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-floating">
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control border-0"
+                        placeholder="Saisissez votre addresse email"
+                        style="height: 55px"
+                      />
+                      <label for="email">Adresse email</label>
+                    </div>
+                  </div>
+                  <div class="col-12 col-sm-6">
+                    <div class="form-floating">
+                      <input
+                        type="tel"
+                        name="phone"
+                        id="phone"
+                        class="form-control border-0"
+                        placeholder="Numéro de téléphone"
+                        style="height: 55px"
+                      />
+                      <label for="phone">Numéro de téléphone</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <input
+                        type="text"
+                        name="subject"
+                        id="subject"
+                        class="form-control border-0"
+                        placeholder="Saisissez l'objet"
+                        style="height: 55px"
+                      />
+                      <label for="subject">Objet</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-floating">
+                      <textarea
+                        name="message"
+                        id="message"
+                        class="form-control border-0"
+                        style="height: 130px"
+                        placeholder="Message"
+                      ></textarea>
+                      <label for="message">Message</label>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100 py-3 rounded-pill" type="submit">
+                      Envoyer le message
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- contact End -->
+    <!-- Footer Start -->
+    <div
+      class="container-fluid bg-dark text-light footer pt-5 mt-5 fadeIn"
+      data-wow-delay="0.1s"
+      style="margin-top: 6rem"
+    >
+      <div class="container footer py-5">
+        <div class="row g-5">
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-light mb-4">Services</h4>
+            <ul class="list-unstyled">
+              <li><a class="btn btn-link" href="">Service client</a></li>
+              <li><a class="btn btn-link" href="">Télésecrétariat</a></li>
+              <li><a class="btn btn-link" href="">Support technique</a></li>
+              <li><a class="btn btn-link" href="">Back-office</a></li>
+              <li><a class="btn btn-link" href="">Sondages et Enquêtes</a></li>
+              <li><a class="btn btn-link" href="">Solutions omnicanales</a></li>
+            </ul>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-light mb-4">Menu</h4>
+            <a class="btn btn-link" href="#about">A propos</a>
+            <a class="btn btn-link" href="#fact">Pourquoi nous?</a>
+            <a class="btn btn-link" href="#services">Nos services</a>
+            <a class="btn btn-link" href="#contact">Contactez-nous</a>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <h4 class="text-light mb-4">Adresses</h4>
+            <p class="mb-2">
+              <i class="fa fa-map-marker-alt me-3"></i>22 Lotissement Nour zone
+              industrielle Sidi Rezig 2033 Megrine , Ben Arous Tunisie
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-phone-alt me-3"></i>+216 27 094 094
+            </p>
+            <p class="mb-2">
+              <i class="fa fa-envelope me-3"></i>badreddine@bnbcallcent
+              er.com
+            </p>
+            <div class="d-flex pt-2">
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://www.linkedin.com/company/bnb-call-center/"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://www.facebook.com/profile.php?id=61572443985577"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                class="btn btn-outline-light btn-social"
+                href="https://www.instagram.com/bnb_call_center/"
+                ><i class="fab fa-instagram"></i>
+              ></a>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="map-container">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d818280.1968630025!2d9.020327778124987!3d36.76080209999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12fd63edae230985%3A0x90cb980fe4fde1d2!2sB%26B%20Call%20Center!5e0!3m2!1sen!2stn!4v1730137330728!5m2!1sen!2stn" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade" 
+                aria-label="Carte de localisation" 
+                title="Localisation sur Google Maps">
+              </iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid bg-dark text-light py-4">
+        <div class="container">
+          <div class="copyright">
+            <div class="row">
+              <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                &copy; All Rights Reserved.
+              </div>
+              <div class="col-md-6 text-center text-md-end">
+                <a class="copyright-button" href="index.html">BnB Call Center</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top">
+      <i class="bi bi-arrow-up"></i>
+    </a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/animate/animate.min.js"></script>
+
+    <!-- Shooting Stars Background -->
+    <script src="js/shooting-stars.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("qzThur2ly9FqASeJx");
+      })();
+
+      async function sendMail(event) {
+        event.preventDefault();
+
+        const formData = {
+          username: document.getElementById('username').value,
+          organization: document.getElementById('organization').value,
+          email: document.getElementById('email').value,
+          phone: document.getElementById('phone').value,
+          subject: document.getElementById('subject').value,
+          message: document.getElementById('message').value
+        };
+
+        try {
+          // Send email using emailjs
+          const serviceID = "service_jkixdmg";
+          const templateID = "template_0i87i3n";
+          
+          await emailjs.send(serviceID, templateID, formData);
+
+          // Save to MongoDB
+          const dbResponse = await fetch('/submit', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+          });
+
+          if (!dbResponse.ok) {
+            throw new Error('Failed to save to database');
+          }
+
+          // Clear the form
+          document.getElementById('username').value = '';
+          document.getElementById('organization').value = '';
+          document.getElementById('email').value = '';
+          document.getElementById('phone').value = '';
+          document.getElementById('subject').value = '';
+          document.getElementById('message').value = '';
+
+          
+        } catch (error) {
+          console.error('Error:', error);
+          alert('Failed to send message. Please try again.');
+        }
+      }
+    </script>
+    <script src="js/scripts.js"></script>
+  </body>
+</html>
