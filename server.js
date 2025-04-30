@@ -53,7 +53,7 @@ app.get('/admin', isAuthenticated, (req, res) => {
 });
 
 // MongoDB Connection
-const mongoURI = 'mongodb+srv://root:<db_password>@cluster0.1rj9n.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0/call_center_db';
+const mongoURI = "mongodb://localhost:27017/call_center_db";
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected successfully'))
     .catch(err => console.error('MongoDB connection error:', err));
@@ -236,6 +236,7 @@ app.post('/api/export-submissions', async (req, res) => {
     }
 });
 // Start server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Server is running on http://0.0.0.0:${PORT}`);
 });
+
