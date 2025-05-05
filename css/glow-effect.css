@@ -1,0 +1,215 @@
+.stats-card, .service-item {
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+    border-radius: 15px;
+    background: white;
+}
+
+.stats-card::before, .service-item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(221,123,187,0.15) 10%, rgba(221,123,187,0) 30%),
+                radial-gradient(circle at 40% 40%, rgba(215,159,30,0.15) 5%, rgba(215,159,30,0) 25%),
+                radial-gradient(circle at 60% 60%, rgba(90,146,44,0.15) 10%, rgba(90,146,44,0) 30%),
+                radial-gradient(circle at 40% 60%, rgba(76,120,148,0.15) 10%, rgba(76,120,148,0) 30%);
+    transform: rotate(0deg);
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    filter: blur(10px);
+}
+
+.stats-card:hover::before, .service-item:hover::before {
+    opacity: 1;
+    animation: rotate 8s linear infinite;
+}
+
+.stats-card .content, .service-item .content {
+    position: relative;
+    z-index: 1;
+    background: white;
+    border-radius: inherit;
+    height: 100%;
+}
+
+.stats-card:hover, .service-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.stats-card i, .service-item i {
+    transition: transform 0.3s ease;
+}
+
+.stats-card:hover i, .service-item:hover i {
+    transform: scale(1.2);
+}
+
+.stats-card h2, .service-item h4 {
+    transition: color 0.3s ease;
+}
+
+.stats-card:hover h2, .service-item:hover h4 {
+    color: var(--primary);
+}
+
+/* Service Item Specific Styles */
+.service-item {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.service-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 15px;
+    padding: 2px;
+    background: linear-gradient(
+        45deg,
+        rgba(var(--primary-rgb), 0.3),
+        rgba(var(--primary-rgb), 0.1)
+    );
+    -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-item:hover::after {
+    opacity: 1;
+}
+
+.service-item p {
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover p {
+    transform: translateY(2px);
+}
+
+/* Service Item Enhanced Styles */
+.service-item {
+    background: linear-gradient(to bottom right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.service-item .content {
+    padding: 1rem;
+    background: transparent;
+}
+
+.service-item:hover {
+    transform: translateY(-5px) scale(1.02);
+}
+
+.service-item h4 {
+    font-size: 1.25rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+.service-item i {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(45deg, var(--primary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: all 0.4s ease;
+}
+
+.service-item:hover i {
+    transform: scale(1.2) rotate(5deg);
+}
+
+.service-item::before {
+    background: radial-gradient(circle at 50% 50%, rgba(var(--primary-rgb), 0.1) 0%, rgba(var(--primary-rgb), 0) 50%),
+                radial-gradient(circle at 0% 0%, rgba(var(--primary-rgb), 0.1) 0%, rgba(var(--primary-rgb), 0) 50%),
+                radial-gradient(circle at 100% 100%, rgba(var(--primary-rgb), 0.1) 0%, rgba(var(--primary-rgb), 0) 50%);
+    filter: blur(20px);
+}
+
+.service-item .overflow-hidden {
+    position: relative;
+}
+
+.service-item p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 0;
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced hover effects */
+.service-item:hover .content {
+    transform: translateZ(10px);
+}
+
+.service-item:hover h4 {
+    background: linear-gradient(45deg, var(--primary), var(--primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transform: translateY(-2px);
+}
+
+.service-item:hover p {
+    transform: translateY(2px);
+    color: #444;
+}
+
+/* Smooth animation for all transitions */
+.service-item *,
+.service-item *::before,
+.service-item *::after {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Add subtle inner shadow on hover */
+.service-item:hover {
+    box-shadow: 
+        0 15px 30px rgba(0,0,0,0.1),
+        inset 0 0 20px rgba(255,255,255,0.5);
+}
+
+.golden-heading {
+    color: #FFD700; /* Gold color */
+}
+
+.text-secondary {
+    color: #FFD700; /* Change blue to gold */
+}
+
+h5 {
+    color: #FFD700; /* Change all h5 elements to gold */
+}
+
+h3 {
+    color: #FFD700; /* Change all h3 elements to gold */
+}
+
+h6 {
+    color: #FFD700; /* Change all h6 elements to gold */
+}
